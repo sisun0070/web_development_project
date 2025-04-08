@@ -2,20 +2,19 @@ import { useState } from "react";
 import { Box, Container, Modal, Typography } from "@mui/material";
 import InputForm from './components/InputForm';
 import ResultBox from './components/ResultBox';
+import Footer from "./components/Footer";
 import MotivationalModal from './components/MotivationalModal';
-import Footer from './components/Footer';
 import ClockImage from './assets/clock.png';
 import TitleImage from './assets/title.png';
-import './App.css';
 
 function App() {
-  const [ field, setField ] = useState('');
-  const [ time, setTime ] = useState('');
-  const [ loading, setLoading ] = useState(false);
-  const [ resultVisible, setResultVisible ] = useState(false);
-  const [ modalOpen, setModalOpen ] = useState(false); 
+    const [ field, setField ] = useState('');
+    const [ time, setTime ] = useState('');
+    const [ loading, setLoading ] = useState(false);
+    const [ resultVisible, setResultVisible ] = useState(false);
+    const [ modalOpen, setModalOpen ] = useState(false); 
 
-  const handleCalculate = () => {
+    const handleCalculate = () => {
     const timeValue = Number(time);
     if(!field) {
       alert('입력되지 않았습니다.');
@@ -48,39 +47,21 @@ function App() {
       fontFamily: 'GmarketSansMedium'  
     }}>
       <Container maxWidth='md' sx={{ pt: 5}}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb : 5 }}>
-          <Box
+        <Box sx={{ 
+          display:'flex', 
+          flexDirection: 'column',
+          alignItems: 'center',
+          mb: 5,  
+        }}>
+          <img src={ClockImage} alt="Clock" width={265} height={265} style={{position: 'relative'}} />
+          <Box 
             sx={{
-              position: 'relative',
-              width: 265,
-              height: 265,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <img 
-              src={ClockImage} 
-              alt="clock"
-              width={265}
-              height={265}
-              style={{position: 'absolute', top: 0, left: 0}}  
-            />
-          <Box sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 600,
-          }}>
-            <img 
-              src={TitleImage} 
-              alt="title" 
-              style={{ width: '100%'}}/>
-            </Box>
+              position: 'absolute',
+              width: 564,
+            }}>
+              <img src={TitleImage} alt="Title" style={{ width: '100%'}}/>
           </Box>
         </Box>
-
         <InputForm
           field={field}
           setField={setField}
@@ -98,9 +79,9 @@ function App() {
         />
 
         <MotivationalModal open={modalOpen} handleClose={() => setModalOpen(false)} />
-
-        <Footer />  
-
+          
+          <Footer />
+          
       </Container>
     </Box>
   )
